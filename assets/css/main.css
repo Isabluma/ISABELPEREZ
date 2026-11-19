@@ -1,0 +1,257 @@
+/* Isabel Pérez — portafolio · estilos */
+/*
+  Opción D — «Exposición».
+  Limpia, editorial, casi sin texto. Tras la lluvia, las fotografías pasan en horizontal,
+  grandes y a distintas alturas, como una exposición que se recorre caminando.
+  Syne para el nombre y los títulos grandes; Archivo, pequeña y en mayúsculas, para todo lo demás.
+*/
+:root{--bg:#efefed;--ink:#0e0e0e;--soft:#6f6f6b;--gut:clamp(14px,2vw,28px);
+  --d:"Syne","Archivo",sans-serif;
+  --f:"Archivo","Helvetica Neue",Arial,sans-serif;--ease:cubic-bezier(.22,.8,.24,1)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 11px/1.4 var(--f);letter-spacing:.03em;text-transform:uppercase;
+  font-stretch:100%;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+img{display:block}
+p,h1,h2,h3,figure,ul{margin:0;font-weight:inherit;font-size:inherit}
+ul{padding:0;list-style:none}
+.hov{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;padding-bottom:2px;transition:background-size .55s cubic-bezier(.22,.8,.24,1),opacity .3s}
+.hov:hover,.hov:focus-visible{background-size:100% 1px}
+.chap button.hov,.svc-cta.hov,.mail.hov,.rain.hov{background:none}
+.chap button.hov:hover,.svc-cta.hov:hover,.mail.hov:hover,.rain.hov:hover{opacity:.55}
+
+/* ---------- interfaz fija ---------- */
+.ui{position:fixed;z-index:40;transition:color .5s}
+.cover-on .ui{color:#fff}
+.tl{top:max(var(--gut),env(safe-area-inset-top));left:var(--gut)}
+.tr{top:max(var(--gut),env(safe-area-inset-top));right:var(--gut);display:flex;gap:18px}
+.tl,.tr{transition:transform .7s var(--ease),opacity .7s,color .5s}
+.nav-up .tr{transform:translateY(-170%);opacity:0;pointer-events:none}
+.bl{bottom:max(var(--gut),env(safe-area-inset-bottom));left:var(--gut)}
+.br{bottom:max(var(--gut),env(safe-area-inset-bottom));right:var(--gut)}
+.bc{bottom:max(var(--gut),env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:12px;font-variant-numeric:tabular-nums;transition:opacity .5s,color .5s}
+.cover-on .bc{opacity:0}
+.line{width:clamp(80px,14vw,200px);height:1px;background:currentColor;opacity:.25;position:relative}
+.line i{position:absolute;inset:0;background:currentColor;transform-origin:left;transform:scaleX(var(--pr,0));opacity:1}
+.rain{display:inline-flex;align-items:center;gap:8px}
+.bars{display:inline-flex;align-items:flex-end;gap:2px;height:9px}
+.bars i{display:block;width:2px;height:2px;background:currentColor}
+.rain[aria-pressed="true"] .bars i{animation:bar 1s ease-in-out infinite}
+.rain[aria-pressed="true"] .bars i:nth-child(2){animation-delay:.2s}
+.rain[aria-pressed="true"] .bars i:nth-child(3){animation-delay:.4s}
+@keyframes bar{0%,100%{height:2px}50%{height:9px}}
+
+/* ---------- portada ---------- */
+.cover{position:relative;height:100vh;height:100svh;background:#000;overflow:hidden}
+.cover .tri{position:absolute;inset:0;display:flex;gap:2px;background:#000;opacity:calc(1 - var(--c,0) * .6)}
+.cover .tri video{display:block;flex:1 1 0;min-width:0;height:100%;object-fit:cover}
+/* en horizontal, el vídeo original (vertical) se gira 90°: queda en 1920 × 1080 y cubre la portada sin ampliarse */
+@media (orientation:landscape){
+  .cover .tri #reel{position:absolute;top:50%;left:50%;flex:none;width:var(--vh,100vh);height:100vw;
+    transform:translate(-50%,-50%) rotate(90deg);object-fit:cover}
+}
+.cover::after{content:"";position:absolute;inset:0;pointer-events:none;background:rgba(0,0,0,.22)}
+.name{z-index:2}
+.name{position:absolute;left:0;right:0;bottom:calc(max(var(--gut),env(safe-area-inset-bottom)) + 26px);padding:0 var(--gut);color:#fff;
+  font:700 clamp(42px,9.6vw,178px)/.85 var(--d);letter-spacing:-.03em;white-space:nowrap;text-align:center;
+  transform:translateY(calc(var(--c,0) * -30vh));opacity:calc(1 - var(--c,0) * 1.6)}
+.js .name span{display:inline-block;opacity:0;transform:translateY(22%);filter:blur(10px)}
+.entered .name span{animation:rise 2.6s cubic-bezier(.2,.65,.2,1) forwards;animation-delay:calc(1.1s + var(--i) * .08s)}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
+/* entrada lenta, como un fundido de cine: la lluvia aparece desde el negro, luego el nombre, luego lo demás */
+.entered .cover .tri video{animation:vin 3.4s ease both}
+@keyframes vin{from{opacity:0}}
+.entered .ui,.entered .hint{animation:uin 1.8s ease 3.2s backwards}
+@keyframes uin{from{opacity:0}}
+
+/* ---------- experiencia: entrada ---------- */
+.locked{overflow:hidden}
+.gate{position:fixed;inset:0;z-index:100;background:#000;color:#fff;display:grid;place-items:center;text-align:center;padding:24px;
+  clip-path:inset(0 0 0 0);transition:clip-path 1.3s cubic-bezier(.76,0,.24,1)}
+.gate.out{clip-path:inset(50% 0 50% 0);pointer-events:none}
+.gate-in{display:grid;gap:24px;justify-items:center;animation:fadein 1.6s var(--ease) both}
+@keyframes fadein{from{opacity:0;transform:translateY(12px)}}
+.gate .q{font:700 clamp(30px,4.4vw,64px)/.95 var(--d);letter-spacing:-.03em;text-transform:none;max-width:14ch}
+.gate .s{color:rgba(255,255,255,.55);max-width:34ch}
+.gate .opts{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+.gate button{padding:13px 20px;border:1px solid rgba(255,255,255,.5);border-radius:999px;transition:background .3s,color .3s}
+.gate button:hover,.gate button:focus-visible{background:#fff;color:#000}
+.gate .hp{color:rgba(255,255,255,.38);font-size:10px}
+
+/* ---------- experiencia: gotas sobre la portada ---------- */
+.drop{position:absolute;z-index:1;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;border:1px solid rgba(255,255,255,.6);
+  pointer-events:none;animation:drop 1.7s cubic-bezier(.2,.7,.3,1) forwards}
+.drop.big{width:300px;height:300px;margin:-150px 0 0 -150px;border-width:1.5px}
+@keyframes drop{from{transform:scale(.04);opacity:.95}to{transform:scale(1);opacity:0}}
+.hint{position:absolute;z-index:2;left:50%;bottom:max(var(--gut),env(safe-area-inset-bottom));transform:translateX(-50%);color:#fff;
+  display:flex;align-items:center;gap:10px;opacity:calc(1 - var(--c,0) * 4)}
+.hint i{display:block;width:1px;height:22px;background:#fff;transform-origin:top;animation:cue 2.2s cubic-bezier(.76,0,.24,1) infinite}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ---------- experiencia: la luz de cada proyecto ---------- */
+body{transition:background-color 1.4s ease}
+.endcard .thanks{color:var(--soft)}
+#v-p{text-transform:none;letter-spacing:0;font-size:14px;text-align:center;flex:1}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* ---------- revelado: una foto a la vez, cada una entra como una cortina sobre la anterior ---------- */
+.expo{position:relative}
+.pin{position:sticky;top:0;height:100vh;height:var(--vh,100svh);overflow:hidden}
+.track{position:absolute;inset:0}
+.slide{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;
+  clip-path:inset(calc(var(--r,1) * 100%) 0 0 0);opacity:calc(1 - var(--u,0) * 1.05);transform:scale(calc(1 - var(--u,0) * .08));
+  will-change:clip-path,transform,opacity}
+.slide.now{pointer-events:auto}
+.card figure{display:grid;gap:12px;margin:0;transform:translate(calc(var(--ox,0vw) * var(--om,1)),calc(var(--oy,0vh) * var(--om,1)));cursor:none}
+.card .ph{position:relative;overflow:hidden;background:#dcdcd9;filter:brightness(calc(1 - var(--u,0) * .45));clip-path:inset(0);transition:clip-path .8s var(--ease)}
+.card figure:hover .ph{clip-path:inset(1.4%)}
+.card img{display:block;object-fit:cover;transform:translateY(var(--py,0px)) scale(calc(1.14 - (1 - var(--r,1)) * .1))}
+.cap{display:flex;justify-content:space-between;align-items:baseline;gap:20px;color:var(--soft);opacity:calc(1 - var(--u,0) * 4)}
+.cap .w{text-transform:none;letter-spacing:0;font-size:13px;color:var(--ink);text-align:right;clip-path:inset(0 calc(var(--r,1) * 100%) 0 0)}
+.cap .n{font-variant-numeric:tabular-nums}
+.chap{background:var(--tint,#efefed);text-align:center}
+.chap-in{display:grid;gap:14px;justify-items:center;padding:0 24px}
+.chap b{font:700 clamp(48px,9vw,168px)/.86 var(--d);letter-spacing:-.04em;display:block}
+.chap .meta,.chap .thanks{color:var(--soft)}
+.chap button{border-bottom:1px solid currentColor;padding-bottom:3px;margin-top:8px}
+.endcard b{font-size:clamp(36px,6vw,104px)}
+.scene{background:#0d0d0c;color:#fff}
+.scene .hero{position:absolute;inset:0;overflow:hidden}
+.scene .hero img,.scene .hero video{width:100%;height:100%;object-fit:cover;filter:brightness(.6);
+  transform:scale(calc(1 + var(--r,1) * .2 + var(--u,0) * .05))}
+.scene .chap-in{position:relative;z-index:1}
+.scene .meta{color:rgba(255,255,255,.7)}
+.meta.v{writing-mode:vertical-rl;letter-spacing:.32em;margin-bottom:10px}
+.ma{background:var(--tint,#efefed)}
+/* pausa entre proyectos: solo una línea fina que se dibuja, y espacio */
+.ma-k{display:block;width:1px;height:72px;background:var(--soft);opacity:.5;transform-origin:top;transform:scaleY(calc(1 - var(--r,1)))}
+.drop.ink{border-color:rgba(255,255,255,.8)}
+
+/* ---------- vida: cada elemento se mueve a su manera ---------- */
+/* títulos de proyecto: las letras suben desde una línea, al ritmo del scroll; al salir, el bloque se eleva */
+.chap .ttl{display:block;overflow:hidden;padding:.04em 0 .1em}
+.chap .ttl .wd{font-style:normal;white-space:nowrap;display:inline-block}
+.chap .ttl span{display:inline-block;
+  transform:translateY(calc((1 - min(1, max(0, (1 - var(--r,1)) * 1.7 - var(--i,0) * .05))) * 108%))}
+.scene .chap-in{transform:translateY(calc(var(--u,0) * -70px));opacity:calc(1 - var(--u,0) * 1.4)}
+.scene .chap-in > span:not(.meta),.scene .chap-in > button{opacity:calc((1 - var(--r,1)) * 2.2 - 1.1)}
+.scene .meta.v{opacity:calc((1 - var(--r,1)) * 1.6 - .5)}
+/* fotos: tres maneras de revelarse que se alternan (cortina, barrido lateral, obturador) */
+.slide.card.rv-l{clip-path:inset(0 0 0 calc(var(--r,1) * 100%))}
+.slide.card.rv-c{clip-path:inset(calc(var(--r,1) * 50%) calc(var(--r,1) * 50%))}
+/* elemento fijo narrativo: proyecto y foto actual, en vertical a la izquierda */
+.where{left:var(--gut);top:50%;writing-mode:vertical-rl;transform:translateY(-50%) rotate(180deg);display:flex;gap:16px;
+  opacity:0;transition:opacity .8s var(--ease)}
+.where .wc{color:var(--soft);font-variant-numeric:tabular-nums}
+.in-gal .where{opacity:1}
+.cover-on .where{opacity:0}
+/* contador: los números ruedan */
+#cnt{display:inline-block;font-variant-numeric:tabular-nums}
+/* índice: el nombre del proyecto muestra una vista previa que pasa por sus fotos */
+.pv{position:fixed;z-index:58;left:0;top:0;width:200px;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.92);
+  transition:opacity .35s,transform .5s var(--ease)}
+.pv.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.pv img{display:block;width:100%;height:auto}
+@media (max-width:760px){.where{display:none}}
+@media (hover:none){.pv{display:none}}
+.endcard .row{display:flex;gap:20px;flex-wrap:wrap;justify-content:center;align-items:baseline;margin-top:18px}
+.endcard .row>*{margin:0;border-bottom:1px solid currentColor;padding-bottom:3px;line-height:1.4}
+.endcard .row a.hov{background:none}.endcard .row a.hov:hover,.endcard .row a.hov:focus-visible{opacity:.55}
+@media (max-width:760px){.card figure{--om:.35}.cap{flex-direction:column;gap:4px}.cap .w{text-align:left}}
+@media (hover:none){.card figure{cursor:pointer}}
+
+/* cursor */
+.cur{position:fixed;z-index:45;left:0;top:0;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--ink);color:#fff;
+  display:grid;place-items:center;pointer-events:none;transform:scale(0);transition:transform .35s var(--ease)}
+.cur.on{transform:scale(1)}
+
+/* ---------- índice ---------- */
+.index{position:fixed;inset:0;z-index:55;background:var(--bg);overflow-y:auto;padding:max(var(--gut),env(safe-area-inset-top)) var(--gut) max(var(--gut),env(safe-area-inset-bottom));display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity .5s}
+.index.open{opacity:1;pointer-events:auto}
+
+/* ---------- paneles ---------- */
+.panel{position:fixed;inset:0;z-index:60;display:grid;grid-template-columns:1fr min(560px,100%);pointer-events:none}
+.panel .shade{background:rgba(14,14,14,.18);opacity:0;transition:opacity .5s}
+.panel .sheet{background:#fff;overflow-y:auto;transform:translateX(100%);transition:transform .7s var(--ease);padding:max(64px,env(safe-area-inset-top)) clamp(20px,4vw,48px) 70px;position:relative}
+.panel.open{pointer-events:auto}.panel.open .shade{opacity:1}.panel.open .sheet{transform:none}
+.close{position:absolute;top:var(--gut);right:var(--gut)}
+.sheet h2{font:700 clamp(34px,4.4vw,60px)/.92 var(--d);letter-spacing:-.03em;margin:14px 0 30px}
+.sheet .k{color:var(--soft)}
+.prose{text-transform:none;letter-spacing:0;font:400 16px/1.6 var(--f)}
+.prose p+p{margin-top:1em}
+.prose .s{font-weight:600}
+.sheet .portrait{width:min(220px,55%);height:auto;margin-bottom:28px;filter:grayscale(1)}
+.sheet .rows li{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid #e4e4e1}
+.sheet .rows li span:last-child{text-transform:none;letter-spacing:0;font-size:13px;text-align:right}
+.svc{display:grid;gap:36px}
+.svc-h{display:flex;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.svc-h span:first-child{color:var(--soft)}
+.svc-l li{padding:13px 0;border-bottom:1px solid #e4e4e1;text-transform:none;letter-spacing:-.01em;font:400 clamp(17px,1.6vw,20px)/1.3 var(--f)}
+.svc-cta{margin-top:40px;border-bottom:1px solid currentColor;padding-bottom:3px}
+.sheet .mail{display:inline-block;font:700 clamp(22px,2.8vw,34px)/1.1 var(--d);letter-spacing:-.02em;text-transform:none;margin:4px 0 30px;border-bottom:2px solid currentColor}
+
+/* ---------- visor ---------- */
+.viewer{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+  padding:max(var(--gut),env(safe-area-inset-top)) var(--gut) max(var(--gut),env(safe-area-inset-bottom));opacity:0;pointer-events:none;transition:opacity .4s}
+.viewer.open{opacity:1;pointer-events:auto}
+.v-row{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.v-stage{position:relative;min-height:0;margin:12px 0;cursor:zoom-out}
+.v-stage img{position:absolute;inset:0;margin:auto;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+
+@media (max-width:760px){
+  .tr{gap:10px}
+  .tl,.tr{font-size:10px}
+  .name{font-size:9.4vw;bottom:calc(max(var(--gut),env(safe-area-inset-bottom)) + 46px)}
+  .bc{display:none}
+  body:not(.cover-on) .bl{opacity:0;pointer-events:none}
+  .panel{grid-template-columns:0 1fr}
+}
+@media (hover:none){.cur{display:none}.card{cursor:pointer}}
+@media (max-width:760px){.hint{bottom:auto;top:46%}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .name span{opacity:1;transform:none;filter:none}.drop{display:none}}
+/* ---------- lo que hago (dentro de Sobre mí, discreto) ---------- */
+.about-svc{margin-top:64px}
+.about-svc .k{margin-bottom:18px}
+.about-svc .svc{gap:26px}
+.about-svc .svc-h{border-bottom-color:#cfcfcb}
+.about-svc .svc-l li{font-size:14px;padding:9px 0;color:#3a3a38}
+.about-svc .svc-cta{margin-top:30px}
+/* ---------- idioma ---------- */
+.langs{display:inline-flex;gap:6px;align-items:center}
+.langs button{opacity:.45;transition:opacity .3s}
+.langs button.on{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.langs button:hover{opacity:1}
+.gate-lang{position:absolute;top:max(22px,env(safe-area-inset-top));right:22px;color:#fff}
+.gate .gate-lang button{padding:6px 2px;border:0;border-radius:0;background:none;color:#fff}
+.gate .gate-lang button:hover,.gate .gate-lang button:focus-visible{background:none;color:#fff;opacity:1}
+@media (max-width:760px){#open-index{display:none}.tr{gap:8px!important;letter-spacing:.01em}.tr .langs{gap:3px;margin-right:4px}}
+
+/* ---------- accesibilidad ---------- */
+.skip{position:fixed;z-index:200;left:var(--gut);top:-60px;padding:10px 14px;background:var(--ink);color:#fff;transition:top .3s}
+.skip:focus{top:var(--gut)}
+:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.card img:not([src]){visibility:hidden}
+
+/* índice — lista de sala */
+.idx-k{color:var(--soft)}
+#grid{margin:auto 0;padding:48px 0}
+.idx{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.idx li{border-bottom:1px solid rgba(14,14,14,.18)}
+.idx button{width:100%;display:grid;grid-template-columns:48px minmax(0,2.2fr) minmax(0,1fr) minmax(0,.8fr) 80px;align-items:baseline;gap:16px;
+  padding:clamp(14px,2vh,22px) 0;text-align:left;transition:opacity .4s}
+.idx .i-t{font:700 clamp(30px,3.4vw,52px)/.95 var(--d);letter-spacing:-.03em;white-space:nowrap;text-transform:none;color:var(--ink)}
+.idx .i-n,.idx .i-m,.idx .i-c{color:var(--soft)}
+.idx .i-s{text-transform:none;letter-spacing:0;font-size:14px}
+.idx .i-c{text-align:right;font-variant-numeric:tabular-nums}
+@media (hover:hover){.idx:has(button:hover) button:not(:hover){opacity:.3}}
+.idx-f{color:var(--soft)}
+.pv{width:260px}
+@media (max-width:760px){
+  .idx button{grid-template-columns:32px 1fr auto;row-gap:6px}
+  .idx .i-t{grid-column:2/4}
+  .idx .i-s{grid-column:2/3}
+  .idx .i-m{display:none}
+  .idx .i-c{grid-column:3/4}
+}

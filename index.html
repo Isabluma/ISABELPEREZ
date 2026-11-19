@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Isabel Pérez — Copywriter y fotógrafa</title>
+<meta name="description" content="Isabel Pérez, copywriter y fotógrafa. Fotografía documental, escritura de marca y branding. Mirar hasta sentir.">
+<meta name="author" content="Isabel Pérez">
+<meta name="theme-color" content="#0e0e0e">
+<link rel="canonical" href="https://isabelperez.net/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Isabel Pérez">
+<meta property="og:title" content="Isabel Pérez — Copywriter y fotógrafa">
+<meta property="og:description" content="Fotografía documental, escritura de marca y branding. Mirar hasta sentir.">
+<meta property="og:url" content="https://isabelperez.net/">
+<meta property="og:image" content="https://isabelperez.net/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="795">
+<meta property="og:locale" content="es_ES">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="favicon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..700&family=Syne:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Isabel Pérez",
+  "jobTitle": ["Copywriter", "Fotógrafa"],
+  "description": "Copywriter y fotógrafa. Fotografía documental, escritura de marca y branding.",
+  "knowsAbout": ["Copywriting", "Fotografía documental", "Branding", "Escritura editorial"],
+  "email": "mailto:projects@isabelperez.net",
+  "url": "https://isabelperez.net/"
+}
+</script>
+<script src="assets/js/main.js" defer></script>
+</head>
+<body class="cover-on locked">
+<a class="skip" href="#expo" data-i18n="skip">Ir a las fotografías</a>
+
+
+<!-- entrada: el visitante elige cómo entrar -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-q">
+  <div class="gate-lang"><span class="langs" role="group" aria-label="Idioma / Language"><button type="button" data-lang="es">ESP</button><span aria-hidden="true">/</span><button type="button" data-lang="en">ENG</button></span></div>
+  <div class="gate-in">
+    <span>Isabel Pérez</span>
+    <p class="q" id="gate-q" data-i18n="gate-q">Esta página se escucha.</p>
+    <div class="opts">
+      <button type="button" id="in-sound" data-i18n="gate-snd">Entrar con sonido</button>
+      <button type="button" id="in-quiet" data-i18n="gate-qt">Entrar en silencio</button>
+    </div>
+    <span class="hp" data-i18n="gate-hp">Mejor con auriculares</span>
+  </div>
+</div>
+
+<a class="ui tl hov" href="#top">Isabel Pérez</a>
+<nav class="ui tr" aria-label="Principal">
+  <span class="langs" role="group" aria-label="Idioma / Language"><button type="button" data-lang="es">ESP</button><span aria-hidden="true">/</span><button type="button" data-lang="en">ENG</button></span>
+  <button class="hov" id="open-index" data-i18n="nav-index">Índice</button>
+  <button class="hov" data-open="p-about" data-i18n="nav-about">Sobre mí</button>
+  <button class="hov" data-open="p-contact" data-i18n="nav-contact">Contacto</button>
+</nav>
+<p class="ui bl" data-i18n="bl">Copywriter &amp; fotógrafa</p>
+<div class="ui where" aria-hidden="true"><span id="w-p"></span><span class="wc" id="w-c"></span></div>
+<div class="pv" id="pv" aria-hidden="true"><img alt=""></div>
+<div class="ui bc" aria-hidden="true"><span id="cnt">01</span><span class="line"><i id="pr"></i></span><span id="tot">17</span></div>
+<button class="ui br rain hov" id="sound" type="button" aria-pressed="false"><span class="bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="sound-t">Escuchar la lluvia</span></button>
+
+<main id="contenido">
+<header class="cover" id="top">
+  <div class="tri">
+    <video id="reel" autoplay muted loop playsinline preload="metadata" poster="assets/video/lluvia-poster.jpg" aria-label="Gotas de agua sobre un cristal, en blanco y negro"><source src="assets/video/lluvia.mp4" type="video/mp4"></video>
+  </div>
+  <h1 class="name" aria-label="Isabel Pérez — Copywriter y fotógrafa"></h1>
+  <span class="hint" aria-hidden="true"><span data-i18n="hint">Desliza</span> <i></i></span>
+</header>
+
+<section class="expo" id="expo" aria-label="Fotografías">
+  <h2 class="sr-only">Proyectos</h2>
+  <div class="pin"><div class="track" id="track"></div></div>
+</section>
+</main>
+
+<div class="cur" id="cur" aria-hidden="true" data-i18n="cur">Ver</div>
+
+<!-- índice -->
+<div class="index" id="index" role="dialog" aria-modal="true" hidden aria-label="Índice de fotografías">
+  <button class="close hov" id="close-index" style="position:fixed" data-i18n="close">Cerrar</button>
+  <p class="k idx-k" data-i18n="idx-k">Índice</p>
+  <div id="grid"></div>
+  <p class="idx-f"><span id="idx-n"></span> <span data-i18n="idx-f">fotografías · 5 proyectos</span></p>
+</div>
+
+<!-- visor -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Fotografía ampliada">
+  <div class="v-row"><span id="v-n"></span><button class="hov" id="v-close" data-i18n="close">Cerrar</button></div>
+  <div class="v-stage" id="v-stage"><img id="v-img" alt=""></div>
+  <div class="v-row"><button class="hov" id="v-prev" data-i18n="v-prev">← Anterior</button><span id="v-p"></span><button class="hov" id="v-next" data-i18n="v-next">Siguiente →</button></div>
+</div>
+
+<!-- paneles -->
+<div class="panel" id="p-about" role="dialog" aria-modal="true" aria-labelledby="t-about"><div class="shade" data-close></div><div class="sheet">
+  <button class="close hov" data-close data-i18n="close">Cerrar</button>
+  <p class="k" data-i18n="about-k">Sobre mí</p><h2 id="t-about" data-i18n="about-h">Soy Isabel</h2>
+  <img class="portrait" src="assets/img/isabel-retrato-960.jpg" width="767" height="960" alt="Isabel Pérez en un retrato en blanco y negro" loading="lazy">
+  <div class="prose" data-i18n="about-prose">
+    <p>Tengo cierta facilidad para distraerme con cosas que, después, me cuesta explicar. Una sombra, por ejemplo. Puedo llegar tarde por una sombra. Estoy trabajando en la puntualidad; la sombra tiene buen material.</p>
+    <p>Lo cotidiano tiene maneras muy suyas de dejarme pensando. Yo voy a lo mío y, de pronto, la luz hace algo y ya tenemos un asunto personal. Me gusta quedarme ahí, mirando hasta sentir. Mis fotografías y mis textos suelen empezar así: algo afuera me mueve algo adentro y me entra la curiosidad de ver hasta dónde llega.</p>
+    <p>Estudié fotografía documental y escribo. Me gusta encontrar ese detalle que cambia una historia y las palabras que hacen que alguien quiera quedarse a escucharla.</p>
+    <p class="s">Mirar hasta sentir. Después, encontrar cómo contarlo.</p>
+  </div>
+  <div class="about-svc">
+    <p class="k" data-i18n="svc-k2">Lo que hago</p>
+  <div class="svc">
+      <div>
+        <p class="svc-h"><span>01</span><span>Copywriting</span></p>
+        <ul class="svc-l" data-i18n="svc-copy">
+          <li>Voz y escritura de marca</li>
+          <li>Textos para web</li>
+          <li>Newsletters y email</li>
+          <li>Nombres de producto y microcopy</li>
+          <li>Textos editoriales y ensayo</li>
+        </ul>
+      </div>
+      <div>
+        <p class="svc-h"><span>02</span><span data-i18n="svc-photo-h">Fotografía</span></p>
+        <ul class="svc-l" data-i18n="svc-photo">
+          <li>Fotografía documental</li>
+          <li>Viajes y editorial</li>
+          <li>Producto con historia</li>
+          <li>Retrato</li>
+          <li>Proyectos de foto y texto juntos</li>
+        </ul>
+      </div>
+      <div>
+        <p class="svc-h"><span>03</span><span>Branding</span></p>
+        <ul class="svc-l" data-i18n="svc-brand">
+          <li>Identidad visual y logo</li>
+          <li>Sistema de marca</li>
+          <li>Empaque y aplicaciones</li>
+          <li>Dirección de arte</li>
+          <li>Diseño de página web</li>
+        </ul>
+      </div>
+    </div>
+    <button class="svc-cta hov" data-open="p-contact" data-i18n="svc-cta">Escríbeme →</button>
+  </div>
+</div></div>
+
+<div class="panel" id="p-contact" role="dialog" aria-modal="true" aria-labelledby="t-contact"><div class="shade" data-close></div><div class="sheet">
+  <button class="close hov" data-close data-i18n="close">Cerrar</button>
+  <p class="k" data-i18n="contact-k">Contacto</p><h2 id="t-contact" data-i18n="contact-h">Escríbeme</h2>
+  <a class="mail hov" href="mailto:projects@isabelperez.net">projects@isabelperez.net</a>
+</div></div>
+
+
+<div class="panel" id="p-bali" role="dialog" aria-modal="true" aria-labelledby="t-rb"><div class="shade" data-close></div><div class="sheet">
+  <button class="close hov" data-close data-i18n="close">Cerrar</button>
+  <p class="k" data-i18n="bali-k">01 — Bali · Ensayo</p><h2 id="t-rb" data-i18n="bali-h">Iba pasando la vida</h2>
+  <div class="prose" data-i18n="bali-prose">
+    <p>Indonesia no se me ha presentado como un lugar. Se me ha presentado como un espejo raro.</p>
+    <p>Uno que no devuelve el rostro,<br>sino el temblor.</p>
+    <p>Aquí he sentido que lo sagrado no está arriba, ni lejos, ni prometido.<br>Está abajo.<br>A ras de calle.<br>En el humo que sube de una ofrenda.<br>En una mujer que sostiene el equilibrio como si llevara el mundo sobre la cabeza no fuera peso sino costumbre.<br>En un niño sobre una moto, mirándome con esos ojos que tienen algunos instantes…<br>ojos de no saber que ya son memoria para alguien.</p>
+    <p>Yo pensaba que venía a mirar.<br>A guardar imágenes.<br>A coleccionar belleza para después.<br>Pero hay lugares que no se dejan mirar desde afuera.<br>Hay lugares que te exigen la entrega.<br>Que te piden una pequeña muerte.<br>Una rendición de certezas.<br>Una forma más desnuda de estar viva.</p>
+    <p class="s">Bali me ha dolido bonito.</p>
+    <p>Hago fotos, no para recordar lo que vi…<br>sino para intentar tocar lo que me tocó.</p>
+    <p>Porque a veces una cámara no captura una escena.<br>Captura una grieta.<br>Un temblor.<br>La prueba mínima de que hubo un segundo<br>en el que el alma se salió un poco del cuerpo<br>para mirar mejor.</p>
+    <p>No sé quién era yo antes de esta isla.<br>O sí sé,<br>pero la siento ya un poco lejos.</p>
+    <p>Como si entre templo y viento,<br>entre humo y tráfico,<br>entre dioses tallados y cables enredados,<br>hubiera ido dejando versiones viejas de mí<br>tiradas en el camino… como quien se desprende de ropa que ya no le pertenece.</p>
+    <p>Y sin embargo, nunca me había sentido tan cerca.</p>
+    <p>De la vida.<br>De la intemperie.<br>De Dios, tal vez.<br>O de algo parecido a Dios…<br>esa sensación de que todo respira junto,<br>de que incluso el caos tiene pulso,<br>de que la belleza no siempre acaricia;<br>a veces también desarma.</p>
+    <p>Presiento que cuando me vaya,<br>no voy a extrañar solamente la isla.</p>
+    <p>Voy a extrañar<br>la mujer que fui aquí.</p>
+    <p>La que caminó entre sombras y altares<br>con el corazón un poco más abierto.<br>La que entendió que a veces perderse<br>no es una tragedia,<br>sino una forma secreta de regresar.</p>
+    <p>Indonesia no me devolvió respuestas.</p>
+    <p>Me devolvió preguntas.</p>
+    <p class="s">Y, extrañamente,<br>me voy queriendo vivir dentro de ellas.</p>
+  </div>
+</div></div>
+
+<div class="panel" id="p-guate" role="dialog" aria-modal="true" aria-labelledby="t-rg"><div class="shade" data-close></div><div class="sheet">
+  <button class="close hov" data-close data-i18n="close">Cerrar</button>
+  <p class="k" data-i18n="guate-k">02 — Guatemala · Ensayo</p><h2 id="t-rg" data-i18n="guate-h">Poesía geográfica</h2>
+  <div class="prose" data-i18n="guate-prose">
+    <p>Una vez más entendí que viajar no es moverse por el mundo. Es permitir que el mundo se mueva dentro de uno.</p>
+    <p>Porque de pronto una montaña te recuerda tu pequeñez.<br>Una lengua antigua te recuerda que la historia empezó mucho antes de tu llegada.<br>Y el rostro de un desconocido te devuelve algo que creías exclusivamente tuyo… la tristeza, la alegría, la esperanza, el cansancio, el amor.</p>
+    <p class="s">Viajamos buscando paisajes y terminamos encontrando parentescos.</p>
+    <p>Me gusta tanto perderme en lugares ajenos. Porque cada vez que salgo de mi vida, regreso a ella con más profundidad. Como si el alma necesitara otras geografías para recordar que pertenece a algo mucho más grande que sí misma.<br>Tal vez viajar sea eso… acercarse lo suficiente a otras vidas para descubrir que ninguna nos es completamente ajena.</p>
+    <p class="s">Cuanto más lejos voy, más familiar se vuelve el mundo.</p>
+  </div>
+</div></div>
+
+<div class="panel" id="p-table" role="dialog" aria-modal="true" aria-labelledby="t-rt"><div class="shade" data-close></div><div class="sheet">
+  <button class="close hov" data-close data-i18n="close">Cerrar</button>
+  <p class="k" data-i18n="table-k">03 — Branding</p><h2 id="t-rt">The Table Club</h2>
+  <div class="prose" data-i18n="table-prose"><p>Una marca de comidas semanales. La escritura parte de un gesto sencillo: hacerle sitio a alguien más en la mesa.</p></div>
+  <ul class="rows" style="margin-top:30px" lang="en">
+    <li><span lang="es" data-i18n="t-r1">Tagline</span><span>There’s Always Room for One More.</span></li>
+    <li><span lang="es" data-i18n="t-r2">Portada</span><span>Slow days, shared.</span></li>
+    <li><span lang="es" data-i18n="t-r3">Producto</span><span>The Olive Hour</span></li>
+    <li><span lang="es" data-i18n="t-r4">Compra</span><span>Choose Six</span></li>
+    <li><span lang="es" data-i18n="t-r5">Web</span><a class="hov" href="https://www.thetableclub.io/" target="_blank" rel="noopener" style="text-transform:none">thetableclub.io ↗</a></li>
+  </ul>
+  <div class="prose" style="margin-top:30px" lang="en">
+    <p>Thoughtfully prepared meals for busy weeks, inspired by markets, rituals, and the simple pleasure of sitting down at the table.</p>
+    <p>A single hand-glazed dish for the pit and the pepper, the toothpick and the twist-tie. Set the table before the guests arrive.</p>
+    <p>Choose any 6 — double up on a favourite if you like.</p>
+  </div>
+  <p class="k" style="margin-top:40px" data-i18n="table-k2">Ejercicio conceptual · Publicación de viajes</p>
+  <ul class="rows" style="margin-top:10px">
+    <li><span data-i18n="t-ed">Invitación editorial</span><span data-i18n="t-ed-v">El viaje también ocurre de camino.</span></li>
+    <li><span data-i18n="t-em">Asunto de email</span><span data-i18n="t-em-v">No llegué tan lejos sin distraerme.</span></li>
+  </ul>
+</div></div>
+
+</body>
+</html>
