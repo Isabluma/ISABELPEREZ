@@ -140,7 +140,7 @@ function prime(el) {
 const SL = [];
 const OFF = [[-5,-2],[4,2],[-2,3],[6,-1],[-6,1],[3,-3],[0,2],[-4,-1]];
 // foto de cada escena (posición en la lista PH): Bali = la luz entre las piedras, Guatemala = el volcán, The Table Club = la comida en el auto
-const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32, car: 40 };
+const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32, car: 43 };
 function interval() {
   const m = document.createElement('div'); m.className = 'slide ma';
   m.innerHTML = `<span class="ma-k" aria-hidden="true"></span>`;
