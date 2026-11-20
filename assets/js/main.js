@@ -33,6 +33,7 @@ function prime(el) {
     table: { n:'03', t:'The Table Club', s:'Branding y escritura de marca', m:'Copy y fotografía', read:'p-table', readT:'Ver los textos' },
     js:    { n:'04', t:'Testigo', s:'Jose & Stephanie', m:'Fotografía · Boda civil', video:'js-zapatos' },
     nat:   { n:'05', t:'Natalia', s:'Piel y luz', m:'Fotografía · Retrato íntimo', video:'nat-cama' },
+    car:   { n:'06', t:'Carmen', s:'Ciclo de lavado', m:'Fotografía · Editorial' },
   };
   const PH = [
     ['bali','bali-01-cesta',986,1500,'Una mujer camina por una calle de Bali con una cesta sobre la cabeza',78,10,0],
@@ -72,6 +73,13 @@ function prime(el) {
     ['nat','nat-03-perfil',1600,1739,'Perfil de Natalia con el pelo cruzándole la cara, contra una pared clara',70,15,5],
     ['nat','nat-04-sombra',503,1037,'Silueta en sombra de un cuello y una barbilla alzada, a contraluz',76,10,4],
     ['nat','nat-05-jersey',1600,2462,'En blanco y negro, una mujer se quita un jersey de punto que le cubre la cara',80,8,5],
+    ['car','car-01-lavadora',1600,2258,'Carmen, de espaldas con un tatuaje de alas, mete la mano en una lavadora y mira a cámara por encima del hombro',76,10,0],
+    ['car','car-02-noticias',1600,2281,'Carmen lee The Miami Times con una mano en el pelo, junto a una fila de secadoras',76,10,5],
+    ['car','car-03-espera',1600,2219,'Carmen, con chaleco oscuro y un ojo turco al cuello, sentada con una percha en la mano, mira hacia un lado',74,12,5],
+    ['car','car-04-ropa',1600,1238,'En película, Carmen sostiene ropa vaquera y una camisa de cuadros bajo un tubo de luz',56,22,5],
+    ['car','car-05-cambio',1600,2307,'Carmen lee el periódico apoyada en la pared, frente a una máquina de cambio con un gran signo de dólar',76,10,4],
+    ['car','car-06-banco',1600,2413,'Carmen sentada en un banco de madera, entre azulejos blancos y máquinas de monedas, mira de frente',78,10,5],
+    ['car','car-07-giro',1600,2400,'En blanco y negro y en movimiento, Carmen gira la cabeza; el pelo le cubre los ojos y deja ver el tatuaje de su espalda',80,8,5],
   ].map(([p,f,w,h,alt,vh,y,gap], i) => ({ p, src:f, w, h, alt, vh, y, gap, i }));
   /* tus palabras para cada foto (se ven al abrirla en grande) */
   const CAPS = [
@@ -112,11 +120,18 @@ function prime(el) {
     'Detrás del pelo, una mujer que no se esconde.',
     'Hay cuerpos que se leen mejor en la sombra.',
     'Desvestirse también es volver a una misma.',
+    'Hay miradas que no se lavan.',
+    'Las noticias de afuera no alcanzan a entrar.',
+    'Esperar también es una forma de estar.',
+    'Todo lo que llevamos encima, algún día pide agua.',
+    'Cambio. Siempre hace falta cambio.',
+    'Carmen no espera que la miren. Mira.',
+    'Lo que gira, al final, se aclara.',
   ];
 
   const track = $('#track');
   const body = document.body, cover = $('#top'), expo = $('#expo');
-  const TINT = { none: 'rgb(239, 239, 237)', bali: 'rgb(240, 234, 224)', guate: 'rgb(241, 229, 221)', table: 'rgb(233, 234, 222)', js: 'rgb(238, 233, 229)', nat: 'rgb(236, 233, 230)' };
+  const TINT = { none: 'rgb(239, 239, 237)', bali: 'rgb(240, 234, 224)', guate: 'rgb(241, 229, 221)', table: 'rgb(233, 234, 222)', js: 'rgb(238, 233, 229)', nat: 'rgb(236, 233, 230)', car: 'rgb(234, 235, 233)' };
   const reel = $('#reel'), viewer = $('#viewer');
   const RAIN = .4; // volumen máximo de la lluvia (0 a 1): moderado
   let fading = false;
@@ -125,7 +140,7 @@ function prime(el) {
 const SL = [];
 const OFF = [[-5,-2],[4,2],[-2,3],[6,-1],[-6,1],[3,-3],[0,2],[-4,-1]];
 // foto de cada escena (posición en la lista PH): Bali = la luz entre las piedras, Guatemala = el volcán, The Table Club = la comida en el auto
-const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32 };
+const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32, car: 40 };
 function interval() {
   const m = document.createElement('div'); m.className = 'slide ma';
   m.innerHTML = `<span class="ma-k" aria-hidden="true"></span>`;
@@ -403,7 +418,7 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "nav-index": "Index",
     "idx-k": "Index",
     "idx-ph": "photos",
-    "idx-f": "photographs · 5 projects",
+    "idx-f": "photographs · 6 projects",
     "nav-svc": "Services",
     "nav-about": "About",
     "nav-contact": "Contact",
@@ -458,6 +473,8 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "ch-js-s": "Jose & Stephanie",
     "ch-nat-m": "Photography · Intimate portrait",
     "ch-nat-s": "Skin and light",
+    "ch-car-m": "Photography · Editorial",
+    "ch-car-s": "Wash cycle",
     "end-big": "Look until you feel.",
     "end-thanks": "Thank you for looking slowly.",
     "end-svc": "Services",
@@ -496,6 +513,13 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "cap-34": "Behind her hair, a woman who isn’t hiding.",
     "cap-35": "Some bodies read better in shadow.",
     "cap-36": "Undressing is also a way of coming home to yourself.",
+    "cap-37": "Some glances don’t wash out.",
+    "cap-38": "The news from outside never quite gets in.",
+    "cap-39": "Waiting is also a way of being here.",
+    "cap-40": "Everything we carry asks for water someday.",
+    "cap-41": "Change. You always need change.",
+    "cap-42": "Carmen doesn’t wait to be looked at. She looks.",
+    "cap-43": "Whatever spins, in the end, runs clear.",
   };
   let LANG = 'es';
   function soundText() {
