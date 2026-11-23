@@ -10,6 +10,14 @@ document.documentElement.classList.add('js');
 const IMG = (n, w) => `assets/img/${n}-${w}.jpg`;
 const SRCSET = n => [480, 960, 1600].map(w => `${IMG(n, w)} ${w}w`).join(', ');
 // carga diferida: una foto solo se descarga cuando está a punto de aparecer
+// iPhone pausa los vídeos que se inician ocultos: se reproducen al hacerse visibles y se pausan al ocultarse
+const RMQ = matchMedia('(prefers-reduced-motion: reduce)');
+function syncVideo(el, on) {
+  const v = el && el.querySelector('.hero video');
+  if (!v || v.hasAttribute('data-vsrc')) return;
+  if (on && !RMQ.matches) { if (v.paused && !v._try) { v._try = 1; v.muted = true; v.play().catch(() => {}).finally(() => { v._try = 0; }); } }
+  else if (!v.paused) v.pause();
+}
 function prime(el) {
   if (!el) return;
   el.querySelectorAll('img[data-srcset]').forEach(im => {
@@ -17,8 +25,8 @@ function prime(el) {
     im.removeAttribute('data-srcset');
   });
   el.querySelectorAll('video[data-vsrc]').forEach(v => {
-    v.src = v.dataset.vsrc; v.removeAttribute('data-vsrc');
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) v.play().catch(() => {});
+    v.muted = true; v.defaultMuted = true; v.playsInline = true;
+    v.src = v.dataset.vsrc; v.removeAttribute('data-vsrc'); v.load();
   });
 }
 
@@ -218,6 +226,7 @@ track.appendChild(end); SL.push({ el: end, p: null, t: 'end' });
       s.el.style.visibility = (e <= 0 || u >= 1) ? 'hidden' : 'visible';
       s.el.classList.toggle('now', i === now);
       if (i >= now - 1 && i <= now + 2) prime(s.el);
+      if (s.t !== 'card') syncVideo(s.el, e > 0 && u < 1);
       s.el.setAttribute('aria-hidden', String(i !== now));
       if (s.t === 'card' && !RM) s.el.style.setProperty('--py', ((k - i) * -16).toFixed(1) + 'px');
     });
@@ -253,6 +262,7 @@ if (sNow && sNow.t === 'card') {
   let curSlide = 0, lastN = 0, lastP = null;
   const req = () => { if (!raf) raf = requestAnimationFrame(tick); };
   addEventListener('scroll', req, { passive: true });
+  addEventListener('touchend', () => { SL.forEach(s => { if (s.t !== 'card' && s.el.style.visibility === 'visible') syncVideo(s.el, true); }); }, { passive: true });
   addEventListener('resize', () => {
     if (innerWidth === VW && Math.abs(innerHeight - VH) < 160) return;
     VW = innerWidth; VH = innerHeight;
