@@ -149,6 +149,8 @@ const SL = [];
 const OFF = [[-5,-2],[4,2],[-2,3],[6,-1],[-6,1],[3,-3],[0,2],[-4,-1]];
 // foto de cada escena (posición en la lista PH): Bali = la luz entre las piedras, Guatemala = el volcán, The Table Club = la comida en el auto
 const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32, car: 43 };
+// fotos que se muestran completas, sin el zoom del paralaje (el motivo toca el borde)
+const NZ = new Set(['nat-04-sombra']);
 function interval() {
   const m = document.createElement('div'); m.className = 'slide ma';
   m.innerHTML = `<span class="ma-k" aria-hidden="true"></span>`;
@@ -169,7 +171,7 @@ PH.forEach(ph => {
   }
   const el = document.createElement('div'); el.className = 'slide card ' + ['rv-b', 'rv-l', 'rv-c'][ph.i % 3];
   const o = OFF[ph.i % OFF.length];
-  el.innerHTML = `<figure style="--ox:${o[0]}vw;--oy:${o[1]}vh"><div class="ph"><img data-src="${IMG(ph.src, 960)}" data-srcset="${SRCSET(ph.src)}" data-sizes="(max-width: 760px) 86vw, 50vw" alt="${ph.alt}" width="${ph.w}" height="${ph.h}" decoding="async"></div><figcaption class="cap"><span class="n">${String(ph.i + 1).padStart(2,'0')}</span><span class="w" data-i18n="cap-${ph.i}">${CAPS[ph.i] || ''}</span></figcaption></figure>`;
+  el.innerHTML = `<figure${NZ.has(ph.src) ? ' class="nz"' : ''} style="--ox:${o[0]}vw;--oy:${o[1]}vh"><div class="ph"><img data-src="${IMG(ph.src, 960)}" data-srcset="${SRCSET(ph.src)}" data-sizes="(max-width: 760px) 86vw, 50vw" alt="${ph.alt}" width="${ph.w}" height="${ph.h}" decoding="async"></div><figcaption class="cap"><span class="n">${String(ph.i + 1).padStart(2,'0')}</span><span class="w" data-i18n="cap-${ph.i}">${CAPS[ph.i] || ''}</span></figcaption></figure>`;
   const fig = $('figure', el);
   fig.addEventListener('click', () => openViewer(ph.i));
   if (FINE) { fig.addEventListener('pointerenter', () => cur.classList.add('on')); fig.addEventListener('pointerleave', () => cur.classList.remove('on')); }
