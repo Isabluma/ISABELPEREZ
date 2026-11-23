@@ -233,6 +233,7 @@ body{transition:background-color 1.4s ease}
 :focus-visible{outline:1px solid currentColor;outline-offset:4px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .card img:not([src]){visibility:hidden}
+.card .nz img{transform:none}
 
 /* índice — lista de sala */
 .idx-k{color:var(--soft)}
