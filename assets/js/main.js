@@ -79,7 +79,7 @@ function prime(el) {
     ['nat','nat-01-hombro',1078,717,'Natalia mira por encima del hombro, con el pelo cayéndole sobre un ojo, a la luz del sol',56,22,0],
     ['nat','nat-02-sentada',562,1010,'Natalia sentada, abrazada a sus rodillas, con los ojos cerrados y el pelo largo al sol',74,12,5],
     ['nat','nat-03-perfil',1600,1739,'Perfil de Natalia con el pelo cruzándole la cara, contra una pared clara',70,15,5],
-    ['nat','nat-04-sombra',503,1037,'Silueta en sombra de un cuello y una barbilla alzada, a contraluz',76,10,4],
+    ['nat','nat-04-sombra',559,1016,'Silueta a contraluz del perfil de Natalia, con la barbilla alzada y el mar al fondo',76,10,4],
     ['nat','nat-05-jersey',1600,2462,'En blanco y negro, una mujer se quita un jersey de punto que le cubre la cara',80,8,5],
     ['car','car-01-lavadora',1600,2258,'Carmen, de espaldas con un tatuaje de alas, mete la mano en una lavadora y mira a cámara por encima del hombro',76,10,0],
     ['car','car-02-noticias',1600,2281,'Carmen lee The Miami Times con una mano en el pelo, junto a una fila de secadoras',76,10,5],
