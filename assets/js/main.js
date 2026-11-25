@@ -44,6 +44,7 @@ function prime(el) {
     js:    { n:'04', t:'Testigo', s:'Jose & Stephanie', m:'Fotografía · Boda civil', video:'js-zapatos' },
     nat:   { n:'05', t:'Natalia', s:'Piel y luz', m:'Fotografía · Retrato íntimo', video:'nat-cama' },
     car:   { n:'06', t:'Carmen', s:'Ciclo de lavado', m:'Fotografía · Editorial' },
+    hil:   { n:'07', t:'Hilda', s:'Estudio en gris', m:'Fotografía · Retrato de estudio' },
   };
   const PH = [
     ['bali','bali-01-cesta',986,1500,'Una mujer camina por una calle de Bali con una cesta sobre la cabeza',78,10,0],
@@ -90,6 +91,12 @@ function prime(el) {
     ['car','car-05-cambio',1600,2307,'Carmen lee el periódico apoyada en la pared, frente a una máquina de cambio con un gran signo de dólar',76,10,4],
     ['car','car-06-banco',1600,2413,'Carmen sentada en un banco de madera, entre azulejos blancos y máquinas de monedas, mira de frente',78,10,5],
     ['car','car-07-giro',1600,2400,'En blanco y negro y en movimiento, Carmen gira la cabeza; el pelo le cubre los ojos y deja ver el tatuaje de su espalda',80,8,5],
+    ['hil','hil-01-suelo',1435,2000,'Hilda apoyada en el suelo del estudio, con top blanco y pantalón de cuero, mira de frente',76,10,0],
+    ['hil','hil-02-pared',1557,2000,'Hilda de perfil contra una pared clara, con una mano alzada y la otra en el bolsillo, mira a cámara',78,8,5],
+    ['hil','hil-03-chaleco',1471,2000,'Hilda sentada en el suelo con chaleco negro y vaqueros, la mano en la barbilla',76,10,5],
+    ['hil','hil-04-tumbada',1600,1104,'Hilda tumbada de lado sobre el suelo del estudio, la cabeza apoyada en la mano',54,24,5],
+    ['hil','hil-05-mirada',1600,1197,'Hilda recostada en el suelo, sujetando su top blanco, mira por encima del hombro',56,22,5],
+    ['hil','hil-06-perfil',1435,2000,'Hilda de perfil, con el pelo largo cayendo por la espalda, mira a cámara',80,8,5],
   ].map(([p,f,w,h,alt,vh,y,gap], i) => ({ p, src:f, w, h, alt, vh, y, gap, i }));
   /* tus palabras para cada foto (se ven al abrirla en grande) */
   const CAPS = [
@@ -137,11 +144,17 @@ function prime(el) {
     '',
     '',
     '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
   ];
 
   const track = $('#track');
   const body = document.body, cover = $('#top'), expo = $('#expo');
-  const TINT = { none: 'rgb(239, 239, 237)', bali: 'rgb(240, 234, 224)', guate: 'rgb(241, 229, 221)', table: 'rgb(233, 234, 222)', js: 'rgb(238, 233, 229)', nat: 'rgb(236, 233, 230)', car: 'rgb(234, 235, 233)' };
+  const TINT = { none: 'rgb(239, 239, 237)', bali: 'rgb(240, 234, 224)', guate: 'rgb(241, 229, 221)', table: 'rgb(233, 234, 222)', js: 'rgb(238, 233, 229)', nat: 'rgb(236, 233, 230)', car: 'rgb(234, 235, 233)', hil: 'rgb(235, 235, 234)' };
   const reel = $('#reel'), viewer = $('#viewer');
   const RAIN = .4; // volumen máximo de la lluvia (0 a 1): moderado
   let fading = false;
@@ -150,7 +163,7 @@ function prime(el) {
 const SL = [];
 const OFF = [[-5,-2],[4,2],[-2,3],[6,-1],[-6,1],[3,-3],[0,2],[-4,-1]];
 // foto de cada escena (posición en la lista PH): Bali = la luz entre las piedras, Guatemala = el volcán, The Table Club = la comida en el auto
-const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32, car: 43 };
+const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32, car: 43, hil: 47 };
 // fotos que se muestran completas, sin el zoom del paralaje (el motivo toca el borde)
 const NZ = new Set(['nat-04-sombra']);
 function interval() {
@@ -432,7 +445,7 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "nav-index": "Index",
     "idx-k": "Index",
     "idx-ph": "photos",
-    "idx-f": "photographs · 6 projects",
+    "idx-f": "photographs · 7 projects",
     "nav-svc": "Services",
     "nav-about": "About",
     "nav-contact": "Contact",
@@ -489,6 +502,8 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "ch-nat-s": "Skin and light",
     "ch-car-m": "Photography · Editorial",
     "ch-car-s": "Wash cycle",
+    "ch-hil-m": "Photography · Studio portrait",
+    "ch-hil-s": "A study in grey",
     "end-big": "Look until you feel.",
     "end-thanks": "Thank you for looking slowly.",
     "end-svc": "Services",
