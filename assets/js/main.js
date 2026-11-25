@@ -163,7 +163,9 @@ function prime(el) {
 const SL = [];
 const OFF = [[-5,-2],[4,2],[-2,3],[6,-1],[-6,1],[3,-3],[0,2],[-4,-1]];
 // foto de cada escena (posición en la lista PH): Bali = la luz entre las piedras, Guatemala = el volcán, The Table Club = la comida en el auto
-const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32, car: 43, hil: 47 };
+const HERO = { bali: 5, guate: 8, table: 19, js: 23, nat: 32, car: 43, hil: 44 };
+// encuadre de la portada cuando hay que recortarla (para no cortar la cara)
+const HPOS = { hil: '50% 22%' };
 // fotos que se muestran completas, sin el zoom del paralaje (el motivo toca el borde)
 const NZ = new Set(['nat-04-sombra']);
 function interval() {
@@ -180,7 +182,7 @@ PH.forEach(ph => {
     const ch = document.createElement('div'); ch.className = 'slide chap scene';
     const media = c.video
       ? `<video data-vsrc="assets/video/${c.video}.mp4" poster="assets/video/${c.video}-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>`
-      : `<img data-src="${IMG(hero.src, 1600)}" data-srcset="${SRCSET(hero.src)}" data-sizes="100vw" alt="" decoding="async">`;
+      : `<img data-src="${IMG(hero.src, 1600)}" data-srcset="${SRCSET(hero.src)}" data-sizes="100vw" alt="" decoding="async"${HPOS[ph.p] ? ` style="object-position:${HPOS[ph.p]}"` : ''}>`;
     ch.innerHTML = `<div class="hero">${media}</div><div class="chap-in"><span class="meta v">${c.n}</span><b class="ttl" aria-label="${c.t}">${(() => { let j = 0; return c.t.split(' ').map(w => `<i class="wd" aria-hidden="true">${[...w].map(x => `<span style="--i:${j++}">${x === '&' ? '&amp;' : x}</span>`).join('')}</i>`).join(' '); })()}</b><span data-i18n="ch-${ph.p}-s">${c.s}</span>${c.read ? `<button class="hov" data-open="${c.read}" data-i18n="ch-${ph.p}-r">${c.readT}</button>` : `<span class="meta" data-i18n="ch-${ph.p}-m">${c.m}</span>`}</div>`;
     track.appendChild(ch); SL.push({ el: ch, p: ph.p, t: 'chap' });
   }
