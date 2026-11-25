@@ -32,6 +32,8 @@ function prime(el) {
 
   /* nombre letra a letra */
   const nameEl = $('.name');
+  // al acabar la entrada, la letra se libera del desenfoque para que el texto quede nítido (Safari)
+  nameEl.addEventListener('animationend', e => { if (e.target !== nameEl) e.target.classList.add('ok'); });
   nameEl.innerHTML = [...'ISABEL PÉREZ'].map((c, i) => c === ' ' ? '<span style="--i:' + i + '">&nbsp;</span>' : `<span style="--i:${i}">${c}</span>`).join('');
 
   /* contenido: h = altura (vh), y = desplazamiento vertical (vh), gap = espacio antes (vw) */
