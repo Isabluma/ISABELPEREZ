@@ -241,7 +241,7 @@ body{transition:background-color 1.4s ease}
 #grid{margin:auto 0;padding:48px 0}
 .idx{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
 .idx li{border-bottom:1px solid rgba(14,14,14,.18)}
-.idx button{width:100%;display:grid;grid-template-columns:48px minmax(0,2.2fr) minmax(0,1fr) minmax(0,.8fr) 80px;align-items:baseline;gap:16px;
+.idx button{width:100%;display:grid;grid-template-columns:48px minmax(0,2fr) minmax(0,1.3fr) 80px;align-items:baseline;gap:16px;
   padding:clamp(14px,2vh,22px) 0;text-align:left;transition:opacity .4s}
 .idx .i-t{font:700 clamp(30px,3.4vw,52px)/.95 var(--d);letter-spacing:-.03em;white-space:nowrap;text-transform:none;color:var(--ink)}
 .idx .i-n,.idx .i-m,.idx .i-c{color:var(--soft)}
