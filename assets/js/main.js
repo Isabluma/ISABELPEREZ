@@ -37,11 +37,15 @@ function prime(el) {
   nameEl.innerHTML = [...'ISABEL PÉREZ'].map((c, i) => c === ' ' ? '<span style="--i:' + i + '">&nbsp;</span>' : `<span style="--i:${i}">${c}</span>`).join('');
 
   /* contenido: h = altura (vh), y = desplazamiento vertical (vh), gap = espacio antes (vw) */
+  // título en letras sueltas (para la animación)
+  const TTL = t => { let j = 0; return t.split(' ').map(w => `<i class="wd" aria-hidden="true">${[...w].map(x => `<span style="--i:${j++}">${x === '&' ? '&amp;' : x}</span>`).join('')}</i>`).join(' '); };
+  // nombre del proyecto en el idioma actual
+  const TT = k => (document.documentElement.lang === 'en' && CH[k].tEn) || CH[k].t;
   const CH = {
     bali:  { n:'01', t:'Bali', s:'Iba pasando la vida', m:'Fotografía y ensayo', read:'p-bali', readT:'Leer el ensayo' },
     guate: { n:'02', t:'Guatemala', s:'Orilla de fuego', m:'Fotografía y ensayo', read:'p-guate', readT:'Leer «Poesía geográfica»' },
     table: { n:'03', t:'The Table Club', s:'Branding y escritura de marca', m:'Copy y fotografía', read:'p-table', readT:'Ver los textos' },
-    js:    { n:'04', t:'Testigo', s:'Jose & Stephanie', m:'Fotografía · Boda civil', video:'js-zapatos' },
+    js:    { n:'04', t:'Testigo', tEn:'Witness', s:'Jose & Stephanie', m:'Fotografía · Boda civil', video:'js-zapatos' },
     nat:   { n:'05', t:'Natalia', s:'Piel y luz', m:'Fotografía · Retrato íntimo', video:'nat-cama' },
     car:   { n:'06', t:'Carmen', s:'Ciclo de lavado', m:'Fotografía · Editorial' },
     hil:   { n:'07', t:'Hilda', s:'Estudio en gris', m:'Fotografía · Retrato de estudio' },
@@ -183,7 +187,7 @@ PH.forEach(ph => {
     const media = c.video
       ? `<video data-vsrc="assets/video/${c.video}.mp4" poster="assets/video/${c.video}-poster.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>`
       : `<img data-src="${IMG(hero.src, 1600)}" data-srcset="${SRCSET(hero.src)}" data-sizes="100vw" alt="" decoding="async"${HPOS[ph.p] ? ` style="object-position:${HPOS[ph.p]}"` : ''}>`;
-    ch.innerHTML = `<div class="hero">${media}</div><div class="chap-in"><span class="meta v">${c.n}</span><b class="ttl" aria-label="${c.t}">${(() => { let j = 0; return c.t.split(' ').map(w => `<i class="wd" aria-hidden="true">${[...w].map(x => `<span style="--i:${j++}">${x === '&' ? '&amp;' : x}</span>`).join('')}</i>`).join(' '); })()}</b><span data-i18n="ch-${ph.p}-s">${c.s}</span>${c.read ? `<button class="hov" data-open="${c.read}" data-i18n="ch-${ph.p}-r">${c.readT}</button>` : `<span class="meta" data-i18n="ch-${ph.p}-m">${c.m}</span>`}</div>`;
+    ch.innerHTML = `<div class="hero">${media}</div><div class="chap-in"><span class="meta v">${c.n}</span><b class="ttl" aria-label="${c.t}"${c.tEn ? ` data-i18n="ch-${ph.p}-t" data-al-en="${c.tEn}"` : ''}>${TTL(c.t)}</b><span data-i18n="ch-${ph.p}-s">${c.s}</span>${c.read ? `<button class="hov" data-open="${c.read}" data-i18n="ch-${ph.p}-r">${c.readT}</button>` : `<span class="meta" data-i18n="ch-${ph.p}-m">${c.m}</span>`}</div>`;
     track.appendChild(ch); SL.push({ el: ch, p: ph.p, t: 'chap' });
   }
   const el = document.createElement('div'); el.className = 'slide card ' + ['rv-b', 'rv-l', 'rv-c'][ph.i % 3];
@@ -262,7 +266,7 @@ body.classList.toggle('in-gal', !!sNow && sNow.t === 'card' && scrollY > top - H
 if (sNow && sNow.t === 'card') {
   const pj = sNow.ph.p, list = PH.filter(x => x.p === pj), pos = list.indexOf(sNow.ph) + 1;
   if (pj !== lastP) {
-    const wp = $('#w-p'); wp.textContent = CH[pj].t;
+    const wp = $('#w-p'); wp.textContent = TT(pj);
     if (!RM && lastP) wp.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], { duration: 700, easing: 'cubic-bezier(.22,.8,.24,1)' });
     lastP = pj;
   }
@@ -351,7 +355,7 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
   Object.keys(CH).forEach(k => {
     const c = CH[k], n = PH.filter(p => p.p === k).length;
     const li = document.createElement('li'), b = document.createElement('button');
-    b.innerHTML = `<span class="i-n">${c.n}</span><span class="i-t">${c.t}</span><span class="i-s" data-i18n="ch-${k}-s">${c.s}</span><span class="i-m" data-i18n="ch-${k}-m">${c.m}</span><span class="i-c">${String(n).padStart(2, '0')} <span data-i18n="idx-ph">fotos</span></span>`;
+    b.innerHTML = `<span class="i-n">${c.n}</span><span class="i-t"${c.tEn ? ` data-i18n="ch-${k}-tt"` : ''}>${c.t}</span><span class="i-s" data-i18n="ch-${k}-s">${c.s}</span><span class="i-m" data-i18n="ch-${k}-m">${c.m}</span><span class="i-c">${String(n).padStart(2, '0')} <span data-i18n="idx-ph">fotos</span></span>`;
     b.addEventListener('click', () => { index.classList.remove('open'); pvStop(); goTo(PH.findIndex(p => p.p === k)); });
     if (FINE) { b.addEventListener('pointerenter', () => pvStart(k)); b.addEventListener('pointerleave', pvStop); }
     li.appendChild(b); list.appendChild(li);
@@ -367,7 +371,7 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
   function show(i, d = 0) {
     if (i < 0 || i >= PH.length) return; vi = i; const ph = PH[i];
     vImg.src = IMG(ph.src, innerWidth < 760 ? 960 : 1600); vImg.alt = ph.alt;
-    $('#v-n').textContent = String(i + 1).padStart(2, '0') + ' / ' + String(PH.length).padStart(2, '0') + ' — ' + CH[ph.p].t;
+    $('#v-n').textContent = String(i + 1).padStart(2, '0') + ' / ' + String(PH.length).padStart(2, '0') + ' — ' + TT(ph.p);
     $('#v-p').textContent = (LANG === 'en' && EN['cap-' + i]) || CAPS[i] || '';
     $('#v-prev').style.visibility = i === 0 ? 'hidden' : '';
     $('#v-next').style.visibility = i === PH.length - 1 ? 'hidden' : '';
@@ -540,6 +544,7 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "cap-30": "Joy is a sacred place too.",
     "cap-31": "I was only there. Looking until I felt.",
   };
+  Object.keys(CH).forEach(k => { if (CH[k].tEn) { EN[`ch-${k}-t`] = TTL(CH[k].tEn); EN[`ch-${k}-tt`] = CH[k].tEn; } });
   let LANG = 'es';
   function soundText() {
     return reel.muted ? (LANG === 'en' ? 'Listen to the rain' : 'Escuchar la lluvia') : (LANG === 'en' ? 'Mute' : 'Silenciar');
@@ -552,6 +557,8 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
       const v = l === 'en' ? EN[el.dataset.i18n] : el.dataset.es;
       if (v !== undefined && el.innerHTML !== v) el.innerHTML = v;
     });
+    $$('[data-al-en]').forEach(el => { if (!el.dataset.alEs) el.dataset.alEs = el.getAttribute('aria-label'); el.setAttribute('aria-label', l === 'en' ? el.dataset.alEn : el.dataset.alEs); });
+    if (lastP) $('#w-p').textContent = TT(lastP);
     $$('.langs button').forEach(b => { const on = b.dataset.lang === l; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
     $('#sound-t').textContent = soundText();
     if (viewer.classList.contains('open')) show(vi);
