@@ -355,7 +355,7 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
   Object.keys(CH).forEach(k => {
     const c = CH[k], n = PH.filter(p => p.p === k).length;
     const li = document.createElement('li'), b = document.createElement('button');
-    b.innerHTML = `<span class="i-n">${c.n}</span><span class="i-t"${c.tEn ? ` data-i18n="ch-${k}-tt"` : ''}>${c.t}</span><span class="i-s" data-i18n="ch-${k}-s">${c.s}</span><span class="i-m" data-i18n="ch-${k}-m">${c.m}</span><span class="i-c">${String(n).padStart(2, '0')} <span data-i18n="idx-ph">fotos</span></span>`;
+    b.innerHTML = `<span class="i-n">${c.n}</span><span class="i-t"${c.tEn ? ` data-i18n="ch-${k}-tt"` : ''}>${c.t}</span><span class="i-m" data-i18n="ch-${k}-m">${c.m}</span><span class="i-c">${String(n).padStart(2, '0')} <span data-i18n="idx-ph">fotos</span></span>`;
     b.addEventListener('click', () => { index.classList.remove('open'); pvStop(); goTo(PH.findIndex(p => p.p === k)); });
     if (FINE) { b.addEventListener('pointerenter', () => pvStart(k)); b.addEventListener('pointerleave', pvStop); }
     li.appendChild(b); list.appendChild(li);
