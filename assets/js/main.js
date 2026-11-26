@@ -122,7 +122,7 @@ function prime(el) {
     'Acercarse lo suficiente a otras vidas.',
     'Ninguna nos es completamente ajena.',
     'Cuanto más lejos voy, más familiar se vuelve el mundo.',
-    'Inside, a little ceremony for an ordinary day',
+    'Inside, a little ceremony for an ordinary day.',
     'Slow days, shared.',
     'The Olive Hour',
     'Market Finds. Made to Share.',
