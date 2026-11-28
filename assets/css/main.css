@@ -218,6 +218,10 @@ body{transition:background-color 1.4s ease}
 .about-svc .svc-h{border-bottom-color:#cfcfcb}
 .about-svc .svc-l li{font-size:14px;padding:9px 0;color:#3a3a38}
 .about-svc .svc-cta{margin-top:30px}
+.inq{margin-top:56px;text-transform:none;letter-spacing:0;font:400 clamp(15px,1.4vw,17px)/1.5 var(--f);color:var(--soft)}
+.inq a{color:var(--ink);border-bottom:1px solid #cfcfcb;padding-bottom:2px;white-space:nowrap}
+.inq a.hov{background:none}
+.inq a.hov:hover{opacity:.55}
 /* ---------- idioma ---------- */
 .langs{display:inline-flex;gap:6px;align-items:center}
 .langs button{opacity:.45;transition:opacity .3s}
