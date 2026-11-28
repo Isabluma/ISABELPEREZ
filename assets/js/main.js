@@ -200,7 +200,7 @@ PH.forEach(ph => {
 });
 interval();
 const end = document.createElement('div'); end.className = 'slide chap endcard';
-end.innerHTML = `<div class="chap-in"><b data-i18n="end-big">Mirar hasta sentir.</b><span class="thanks" data-i18n="end-thanks">Gracias por mirar despacio.</span><div class="row"><button class="hov" data-open="p-about" data-i18n="end-about">Sobre mí</button><button class="hov" data-open="p-contact" data-i18n="end-contact">Contacto</button><a class="hov" href="#top" data-i18n="end-back">Volver a la lluvia ↑</a></div></div>`;
+end.innerHTML = `<div class="chap-in"><b data-i18n="end-big">Mirar hasta sentir.</b><span class="thanks" data-i18n="end-thanks">Gracias por mirar despacio.</span><div class="row"><button class="hov" data-open="p-about" data-i18n="end-about">Sobre mí</button><a class="hov" href="#top" data-i18n="end-back">Volver a la lluvia ↑</a></div></div>`;
 track.appendChild(end); SL.push({ el: end, p: null, t: 'end' });
   $('#tot').textContent = String(PH.length).padStart(2, '0');
 
@@ -454,7 +454,6 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "idx-f": "photographs · 7 projects",
     "nav-svc": "Services",
     "nav-about": "About",
-    "nav-contact": "Contact",
     "bl": "Copywriter &amp; photographer",
     "hint": "Scroll",
     "cur": "View",
@@ -464,8 +463,6 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "about-k": "About",
     "about-h": "I’m Isabel",
     "about-prose": "<p>I have a certain talent for getting distracted by things I later find hard to explain. A shadow, for instance. I can be late because of a shadow. I’m working on my punctuality; the shadow has good material.</p><p>Everyday life has its own ways of leaving me thinking. I’m going about my day and, suddenly, the light does something and now it’s personal. I like to stay there, looking until I feel. My photographs and my writing usually begin like that: something outside moves something inside me, and I get curious to see how far it goes.</p><p>I studied documentary photography, and I write. I like finding the detail that changes a story, and the words that make someone want to stay and listen.</p><p class=\"s\">Look until you feel. Then, find a way to tell it.</p>",
-    "contact-k": "Contact",
-    "contact-h": "Write to me",
     "pending": "coming soon",
     "svc-k": "Services",
     "svc-h": "Three ways of paying attention",
@@ -473,7 +470,7 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "svc-copy": "<li>Brand voice and writing</li><li>Website copy</li><li>Newsletters and email</li><li>Product naming and microcopy</li><li>Editorial writing and essays</li>",
     "svc-photo-h": "Photography",
     "svc-photo": "<li>Documentary photography</li><li>Travel and editorial</li><li>Products with a story</li><li>Portraits</li><li>Photo and text projects together</li>",
-    "svc-cta": "Write to me →",
+    "inq": "For business inquiries, please email:",
     "svc-k2": "What I do",
     "bali-k": "01 — Bali · Essay",
     "bali-h": "Life, Walking By",
@@ -514,7 +511,6 @@ function pvStop() { clearInterval(pvT); pv.classList.remove('on'); }
     "end-thanks": "Thank you for looking slowly.",
     "end-svc": "Services",
     "end-about": "About",
-    "end-contact": "Contact",
     "end-back": "Back to the rain ↑",
     "cap-0": "The sacred is low. Street-level.",
     "cap-1": "Between carved gods and tangled wires.",
